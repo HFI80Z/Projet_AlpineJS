@@ -1,28 +1,30 @@
-# Projet Recettes de Cuisine
+# Recettes de Cuisine
 
-Ce projet est une application web simple permettant de lister et gérer des recettes de cuisine. L'utilisateur peut rechercher des recettes, en ajouter, modifier ou supprimer, le tout avec une interface utilisateur intuitive et moderne grâce à Alpine.js et un design personnalisé avec du CSS.
+Ce projet consiste en une application web simple pour la gestion de recettes de cuisine. Elle permet aux utilisateurs de consulter des recettes, d'en ajouter de nouvelles, de les modifier ou de les supprimer. L'application est conçue pour être facile à utiliser, avec une interface agréable et intuitive.
 
 ## Fonctionnalités
 
-- **Affichage des recettes** : Les recettes sont affichées avec leur image, durée, difficulté, ingrédients, et instructions.
-- **Recherche de recettes** : Une barre de recherche permet de filtrer les recettes par titre.
-- **Ajout, modification et suppression de recettes** : L'utilisateur peut ajouter de nouvelles recettes ou modifier et supprimer celles existantes.
-- **Interface utilisateur responsive** : Le design s'adapte à différentes tailles d'écran.
+- Affichage des recettes avec des détails comme le titre, l'image, la durée et la difficulté.
+- Fonction de recherche permettant de trouver rapidement une recette par son titre.
+- Possibilité d'ajouter de nouvelles recettes ou de modifier/supprimer celles qui existent.
+- L'interface s'adapte à différentes tailles d'écran pour une meilleure expérience utilisateur.
 
 ## Technologies utilisées
 
-- **HTML5** : Structure de base du projet.
-- **CSS3** : Design personnalisé (voir `index.css`).
-- **Alpine.js** : Pour la gestion des interactions utilisateur (voir `index.html`).
-  
-## Fichiers inclus
+- **HTML5** pour structurer les pages.
+- **CSS3** pour le design et la mise en page.
+- **Alpine.js** pour gérer les interactions dynamiques sans avoir recours à une grosse bibliothèque JavaScript.
 
-- `index.html` : Le fichier principal qui contient la structure HTML de l'application.
-- `index.css` : Le fichier de style pour la mise en forme de l'application.
+## Contenu du projet
 
-## Instructions pour exécuter le projet
+- `index.html` : Le fichier qui contient la structure de la page.
+- `index.css` : Le fichier qui gère les styles de la page.
 
-1. **Cloner le dépôt** :
+## Comment exécuter le projet
+
+1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/HFI80Z/Projet_AlpineJS.git
-   cd Projet_AlpineJS
+   git clone https://github.com/ton-utilisateur/recettes-cuisine.git
+2. Aller dans le répertoire du projet :
+   ```bash
+   cd recettes-cuisine
