@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recettes de Cuisine</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="CSS/index.css">
+</head>
+
+<body x-data="recipeApp()">
+    <nav>
+        <h1>Recettes de Cuisine</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher une recette..." x-model="searchQuery">
+            <button @click="searchRecipes()">
+                🔍
+            </button>
+        </div>
+    </nav>
+    <main>
+
+        <template x-for="recipe in filteredRecipes" :key="recipe.id">
+            <div class="recipe">
+                <img :src="recipe.image" alt="Image de la recette">
+                <h2 class="recipe-title" x-text="recipe.title"></h2>
+                <p class="tags">Durée : <span x-text="recipe.duration"></span> | Difficulté : <span x-text="recipe.difficulty"></span></p>
+                <div class="description">
+                    <h3>Ingrédients :</h3>
+                    <ul>
+                        <template x-for="ingredient in recipe.ingredients.split(',')" :key="ingredient">
+                            <li x-text="ingredient.trim()"></li>
+                        </template>
+                    </ul>
+                    <h3>Instructions :</h3>
+                    <p x-text="recipe.instructions"></p>
+                </div>
+                <div class="action-buttons">
+                    <button class="add-recipe" @click="editRecipe(recipe)">Modifier</button>
+                    <button class="add-recipe" @click="deleteRecipe(recipe.id)">Supprimer</button>
+                </div>
+            </div>
+        </template>
+
+        <button class="add-recipe" @click="showAddRecipe = true; resetNewRecipe();">Ajouter une recette</button>
+
+        <div x-show="showAddRecipe" class="add-recipe-form">
+            <div class="form-group">
+                <label for="recipe-title">Titre :</label>
+                <input type="text" id="recipe-title" x-model="newRecipe.title">
+            </div>
+            <div class="form-group">
+                <label for="recipe-duration">Durée :</label>
+                <input type="text" id="recipe-duration" x-model="newRecipe.duration">
+            </div>
+            <div class="form-group">
+                <label for="recipe-difficulty">Difficulté :</label>
+                <select id="recipe-difficulty" x-model="newRecipe.difficulty">
+                    <option value="Facile">Facile</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Difficile">Difficile</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="recipe-ingredients">Ingrédients :</label>
+                <textarea id="recipe-ingredients" x-model="newRecipe.ingredients"></textarea>
+                <small>Veuillez entrer les ingrédients séparés par des virgules.</small>
+            </div>
+            <div class="form-group">
+                <label for="recipe-instructions">Instructions :</label>
+                <textarea id="recipe-instructions" x-model="newRecipe.instructions"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="recipe-image">Image (URL) :</label>
+                <input type="text" id="recipe-image" x-model="newRecipe.image">
+            </div>
+            <button class="add-recipe" @click="saveRecipe()">
+                <span x-show="!isEditing">Ajouter la recette</span>
+                <span x-show="isEditing">Confirmer</span>
+            </button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Recettes de Cuisine. Tous droits réservés. | Mentions légales</p>
+    </footer>
+
+    <script>
+        function recipeApp() {
+            return {
+                searchQuery: '',
+                showAddRecipe: false,
+                isEditing: false,
+                currentRecipeId: null, 
+                newRecipe: {
+                    title: '',
+                    duration: '',
+                    difficulty: 'Facile', 
+                    ingredients: '',
+                    instructions: '',
+                    image: ''
+                },
+                recipes: [
+                    {
+                        id: 1,
+                        title: 'Salade César',
+                        duration: '15 minutes',
+                        difficulty: 'Facile',
+                        ingredients: 'Laitue, Croutons, Poulet, Parmesan, Sauce César',
+                        instructions: 'Mélangez tous les ingrédients et servez frais.',
+                        image: 'https://img.hellofresh.com/f_auto,fl_lossy,q_auto,w_1200/hellofresh_s3/image/5ba8a97130006c3be559c7d2-6cea7001.jpg'
+                    },
+                ],
+                addRecipe() {
+                    if (this.newRecipe.title && this.newRecipe.duration) {
+                        this.recipes.push({ ...this.newRecipe, id: Date.now() });
+                        this.resetNewRecipe();
+                        this.showAddRecipe = false;
+                    }
+                },
+                editRecipe(recipe) {
+                    this.newRecipe = { ...recipe }; 
+                    this.showAddRecipe = true; 
+                    this.isEditing = true; 
+                    this.currentRecipeId = recipe.id; 
+                },
+                saveRecipe() {
+                    if (this.isEditing) {
+                        this.recipes = this.recipes.map(recipe =>
+                            recipe.id === this.currentRecipeId ? { ...this.newRecipe, id: recipe.id } : recipe
+                        );
+                    } else {
+                        this.addRecipe();
+                    }
+                    this.resetNewRecipe();
+                    this.showAddRecipe = false;
+                    this.isEditing = false; 
+                    this.currentRecipeId = null; 
+                },
+                deleteRecipe(id) {
+                    this.recipes = this.recipes.filter(recipe => recipe.id !== id);
+                },
+                resetNewRecipe() {
+                    this.newRecipe = {
+                        title: '',
+                        duration: '',
+                        difficulty: 'Facile',
+                        ingredients: '',
+                        instructions: '',
+                        image: ''
+                    };
+                },
+                get filteredRecipes() {
+                    if (!this.searchQuery) return this.recipes;
+                    return this.recipes.filter(recipe =>
+                        recipe.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+                    );
+                },
+                searchRecipes() {
+                    
+                }
+            }
+        }
+    </script>
+</body>
+</html>
