@@ -1,19 +1,19 @@
 # Recettes de Cuisine
 
-Ce projet consiste en une application web simple pour la gestion de recettes de cuisine. Elle permet aux utilisateurs de consulter des recettes, d'en ajouter de nouvelles, de les modifier ou de les supprimer. L'application est conçue pour être facile à utiliser, avec une interface agréable et intuitive.
+Ce projet réalisé en Alpine consiste en une application web de geston de recettes de cuisine. Elle permet de consulter des recettes, d'en rajouter, d'en modifier ou d'en supprimer. L'application est conçue pour être facile avec une interface facile d'utilisation.
 
 ## Fonctionnalités
 
-- Affichage des recettes avec des détails comme le titre, l'image, la durée et la difficulté.
-- Fonction de recherche permettant de trouver rapidement une recette par son titre.
-- Possibilité d'ajouter de nouvelles recettes ou de modifier/supprimer celles qui existent.
-- L'interface s'adapte à différentes tailles d'écran pour une meilleure expérience utilisateur.
+- Affichage des recettes avec des conditions comme le titre, l'image, la durée et la difficulté.
+- Fonction de recherche permettant de trouver rapidement une recette avec son titre.
+- Possibilité d'ajouter de nouvelles recettes ou d'en modifier et d'en supprimer.
+- L'interface s'adapte à différentes tailles d'écran pour une meilleure expérience.
 
 ## Technologies utilisées
 
 - **HTML5** pour structurer les pages.
-- **CSS3** pour le design et la mise en page.
-- **Alpine.js** pour gérer les interactions dynamiques sans avoir recours à une grosse bibliothèque JavaScript.
+- **CSS3** pour la mise en page.
+- **Alpine.js** pour gérer les interactions dynamiques.
 
 ## Contenu du projet
 
