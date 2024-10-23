@@ -24,7 +24,7 @@ Ce projet réalisé en Alpine consiste en une application web de geston de recet
 
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/ton-utilisateur/recettes-cuisine.git
+   git clone https://github.com/HFI80Z/Projet_AlpineJS.git
 2. Aller dans le répertoire du projet :
    ```bash
-   cd recettes-cuisine
+   cd Projet_AlpineJS
